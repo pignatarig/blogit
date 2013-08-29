@@ -16,10 +16,10 @@ module Blogit
     # Raise a 404 error if the admin actions aren't to be included
     # We can't use blogit_conf here because it sometimes raises NoMethodError in main app's routes
     unless Blogit.configuration.include_admin_actions
-      before_filter :raise_404, except: [:index, :show, :tagged]
+      before_filter :raise_404
     end
 
-    blogit_authenticate(except: [:index, :show, :tagged])
+    blogit_authenticate
 
     def index
       respond_to do |format|
